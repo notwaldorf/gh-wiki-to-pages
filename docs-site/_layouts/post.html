@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<section class="content">
+  <p> a post</p>
+  <section class="byline">
+    {{ page.date | date: "%B %e, %Y" }}
+  </section>
+  <h1>
+    <a href="{{ page.url }}">{{ page.title }}</a>
+  </h1>
+  {{ content }}
+</section>

@@ -24,15 +24,23 @@ git clone https://github.com/$org/$repo.git --single-branch
 pushd $repo >/dev/null
 git checkout --orphan gh-pages
 
-# this branch is now completely empty.
-#echo "test" > index.md
+# right now in this directory you have everything
+# in the original $repo folder.
 
 ## clone the wiki in here
 git clone https://github.com/$org/$repo.wiki.git --single-branch $folder
 
-# copy everything over
-echo "copying things over..."
-cp -R $folder/* .
+# Jekyll requires blog post files to be named according to the following format:
+# YEAR-MONTH-DAY-title.md
+echo "renaming wiki pages..."
+for file in $folder/*.md
+do
+  mv "$file" "2018-05-31-${file}"
+done
+
+# copy the wiki into to docs-site/_posts folder.
+echo "copying wiki pages over..."
+cp -R $folder/* docs-site/_posts/
 
 # we don't need that git repo anymore
 rm -rf $folder
