@@ -47,7 +47,9 @@ cd ..
 # send it all to github
 echo "git add-ing..."
 git add _layouts
+git add _includes
 git add _posts
+git add css
 git add _config.yml
 git add index.html
 
