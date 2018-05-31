@@ -12,8 +12,7 @@
 # Run in a clean directory passing in a GitHub org and repo name
 org="notwaldorf"
 repo="test-gh-pages-script"
-folder="docs-pages"
-#branch="master" # default to master when branch isn't specified
+folder="_posts"
 
 # make folder (same as input, no checking!)
 rm -rf $repo
@@ -24,27 +23,33 @@ git clone https://github.com/$org/$repo.git --single-branch
 pushd $repo >/dev/null
 git checkout --orphan gh-pages
 
-# right now in this directory you have everything
-# in the original $repo folder.
+rm .gitignore
+echo '*' >> .gitignore          # ignore everything
+echo '!_layouts/' >> .gitignore  # except for these jekyll things
+echo '!_posts/' >> .gitignore
+echo '!_config.yml' >> .gitignore
+echo '!index.html' >> .gitignore
+
+## copy everything from the docs-site in here
+cp -R docs-site/* .
 
 ## clone the wiki in here
 git clone https://github.com/$org/$repo.wiki.git --single-branch $folder
 
+# remove the .git folder from the wiki repo
+rm -rf $folder/.git
+
 # Jekyll requires blog post files to be named according to the following format:
 # YEAR-MONTH-DAY-title.md
 echo "renaming wiki pages..."
-for file in $folder/*.md
+cd $folder
+for file in *.md
 do
   mv "$file" "2018-05-31-${file}"
 done
+cd ..
 
-# copy the wiki into to docs-site/_posts folder.
-echo "copying wiki pages over..."
-cp -R $folder/* docs-site/_posts/
-
-# we don't need that git repo anymore
-rm -rf $folder
-
+# copy everything from the docs
 # send it all to github
 git add -A .
 git commit -am 'deploy to gh-pages'
