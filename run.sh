@@ -3,6 +3,7 @@
 # Run in a clean directory passing in a GitHub org and repo name
 org="notwaldorf"
 repo="test-gh-pages-script"
+wiki="polymer/pwa-starter-kit.wiki"
 folder="_posts"
 
 # make folder (no checking!)
@@ -26,8 +27,8 @@ mv docs-site/_layouts/ ./_layouts
 cp -R docs-site/* .
 
 ## clone the wiki in here
-echo "clning wiki..."
-git clone https://github.com/$org/$repo.wiki.git --single-branch $folder
+echo "cloning wiki..."
+git clone https://github.com/$wiki.git --single-branch $folder
 
 # remove the .git folder from the wiki repo
 rm -rf $folder/.git
