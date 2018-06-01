@@ -24,7 +24,6 @@ git rm -rf --cached --ignore-unmatch *
 
 ## copy everything from the docs-site in here
 echo "copying jekyll folders..."
-mv docs-site/_layouts/ ./_layouts
 cp -R docs-site/* .
 
 ## clone the wiki in here
