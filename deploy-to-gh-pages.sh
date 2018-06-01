@@ -2,7 +2,7 @@
 
 # Run in a clean directory passing in a GitHub org and repo name
 org="notwaldorf"
-repo="test-gh-pages-script"
+repo="wiki-to-pages"
 wiki="polymer/pwa-starter-kit.wiki"
 folder="_posts"
 
