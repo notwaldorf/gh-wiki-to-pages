@@ -37,10 +37,19 @@ rm -rf $folder/.git
 # YEAR-MONTH-DAY-title.md
 echo "renaming wiki pages..."
 cd $folder
+
+# Jekyll requires blog post files to be named according to the following format:
+# YEAR-MONTH-DAY-title.md
+echo "renaming wiki pages..."
+cd _po$foldersts
+mkdir temp
 for file in *.md
 do
+  # prepend the post type
+  echo '---\nlayout: post\n---' | cat - $file > temp/$file && mv temp/$file $file
   mv "$file" "2018-05-31-${file}"
 done
+rm -rf temp
 cd ..
 
 # copy everything from the docs
@@ -49,6 +58,7 @@ echo "git add-ing..."
 git add _layouts
 git add _posts
 git add css
+git add images
 git add _config.yml
 git add index.html
 
