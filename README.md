@@ -1,4 +1,4 @@
-# `gh-pwages-to-wiki`
+# `gh-pages-to-wiki`
 
 Sometimes you might have a wiki and sometimes you might also want to
 publish this as a static site as a `gh-pages` branch and I haven't
