@@ -19,6 +19,7 @@ git checkout --orphan gh-pages
 
 # uncommit everything
 echo "uncommiting everything..."
+rm .gitignore
 git rm -rf --cached --ignore-unmatch *
 
 ## copy everything from the docs-site in here
@@ -41,7 +42,7 @@ cd $folder
 # Jekyll requires blog post files to be named according to the following format:
 # YEAR-MONTH-DAY-title.md
 echo "renaming wiki pages..."
-cd _po$foldersts
+cd $folder
 mkdir temp
 for file in *.md
 do
