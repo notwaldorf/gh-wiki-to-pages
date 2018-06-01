@@ -47,6 +47,7 @@ for file in *.md
 do
   # prepend the post type
   echo '---\nlayout: post\n---' | cat - $file > temp/$file && mv temp/$file $file
+  # the date doesn't actually matter.
   mv "$file" "2018-05-31-${file}"
 done
 rm -rf temp
