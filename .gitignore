@@ -1,3 +1,4 @@
 docs-pages/
 test-gh-pages-script/
 _site/
+.DS_Store

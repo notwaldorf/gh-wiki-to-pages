@@ -1,13 +1,24 @@
 ---
 layout: default
 ---
-<section class="content">
-  <p> a post</p>
-  <section class="byline">
-    {{ page.date | date: "%B %e, %Y" }}
-  </section>
+<header>
   <h1>
     <a href="{{ page.url }}">{{ page.title }}</a>
   </h1>
-  {{ content }}
-</section>
+</header>
+
+<main>
+  <nav class="toc">
+    <ul data-depth="1">
+      {% assign sortedPosts = site.posts | sort: 'title' %}
+      {% for post in sortedPosts %}
+        <li data-level="H2">
+          <a href="{{ post.url }}">{{ post.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+  <article>
+    {{ content }}
+  </article>
+</main>
